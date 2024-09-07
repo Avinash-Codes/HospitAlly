@@ -56,9 +56,9 @@ fun SignInStaff(navController: NavController, viewModel: HospitalInfo) {
                     fontSize = 25.sp
                 )
                 OutlinedTextField(
-                    value = viewModel.hospitalName,
+                    value = viewModel.staffId,
                     onValueChange = {
-                        viewModel.hospitalName = it
+                        viewModel.staffId = it
                     },
                     modifier = Modifier
                         .border(
@@ -89,9 +89,9 @@ fun SignInStaff(navController: NavController, viewModel: HospitalInfo) {
                     fontSize = 25.sp
                 )
                 OutlinedTextField(
-                    value = viewModel.hospitalRegistrationNumber,
+                    value = viewModel.staffPassword,
                     onValueChange = {
-                        viewModel.hospitalRegistrationNumber = it
+                        viewModel.staffPassword = it
                     },
                     modifier = Modifier
                         .border(
