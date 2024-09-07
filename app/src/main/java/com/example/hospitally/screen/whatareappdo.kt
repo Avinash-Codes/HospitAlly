@@ -1,6 +1,7 @@
 package com.example.hospitally.screen
 
 import android.media.Image
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -37,6 +38,7 @@ import androidx.compose.ui.unit.fontscaling.MathUtils.lerp
 import androidx.navigation.NavController
 import com.example.hospitally.R
 import com.example.hospitally.dataclass.CardData
+import com.example.hospitally.navigation.navigate
 import com.tbuonomo.viewpagerdotsindicator.compose.DotsIndicator
 import com.tbuonomo.viewpagerdotsindicator.compose.model.DotGraphic
 import com.tbuonomo.viewpagerdotsindicator.compose.type.ShiftIndicatorType
@@ -62,15 +64,17 @@ fun CardComponents(
             Column(
                 modifier = Modifier
                     .padding(10.dp)
-                    .fillMaxSize(0.5f)
+                    .fillMaxWidth()
+                    .fillMaxSize(0.5f),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+
             ) {
                 Image(
                     painter = painterResource(id = images),
                     contentDescription = null,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(200.dp)
-                        .clip(RoundedCornerShape(16.dp))
+                        .fillMaxSize()
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
@@ -81,7 +85,8 @@ fun CardComponents(
                     text = description,
                 )
             }
-        }
+        },
+        border = BorderStroke(3.dp, Color(0xFFb12856))
     )
 
 
@@ -96,28 +101,30 @@ fun mains(navController: NavController){
         CardData(
             title = "Card 1",
             description = "Description 1",
-            image = R.drawable.hospitallynobackground
+            image = R.drawable.bedavailability
         ),
         CardData(
             title = "Card 2",
             description = "Description 2",
-            image = R.drawable.hospitallynobackground
+            image = R.drawable.queue
         ),
         CardData(
             title = "Card 3",
             description = "Description 3",
-            image = R.drawable.hospitallynobackground
+            image = R.drawable.medication
+
         ),
         CardData(
             title = "Card 4",
             description = "Description 4",
-            image = R.drawable.hospitallynobackground
+            image = R.drawable.admission
         ),
     )
 
     SlidingCordAnimation(
         cards = cards,
-        onCardSelected = {}
+        onCardSelected = {},
+        navController
     )
 }
 
@@ -125,7 +132,9 @@ fun mains(navController: NavController){
 @Composable
 fun SlidingCordAnimation(
     cards: List<CardData>,
-    onCardSelected:(Int) -> Unit
+    onCardSelected:(Int) -> Unit,
+    navController: NavController
+
 ) {
     val pagerState = rememberPagerState(pageCount = { cards.size })
 
@@ -173,7 +182,9 @@ fun SlidingCordAnimation(
 
         if (pagerState.currentPage == cards.size - 1) {
             Button(
-                onClick = {},
+                onClick = {
+                    navController.navigate("optionstochoose")
+                },
                 modifier = Modifier.padding(16.dp)
                     .size(100.dp,50.dp)
                     .align(Alignment.CenterHorizontally),

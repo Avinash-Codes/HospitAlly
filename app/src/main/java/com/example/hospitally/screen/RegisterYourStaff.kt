@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -40,7 +41,7 @@ import com.example.hospitally.viewmodel.HospitalInfo
 
 
 @Composable
-fun RegisterYourHospital(navController: NavController,viewModel: HospitalInfo) {
+fun RegisterYourStaffs(navController: NavController,viewModel: HospitalInfo) {
     var showToast by rememberSaveable { mutableStateOf(false) }
     val context = LocalContext.current // Access context inside Composable
 
@@ -49,22 +50,21 @@ fun RegisterYourHospital(navController: NavController,viewModel: HospitalInfo) {
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         item {
             Column (
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ){
-                Text(text = "Hospital Name",
+                Text(text = "StaffName",
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif,
                     fontSize = 25.sp
                 )
                 OutlinedTextField(
-                    value = viewModel.hospitalName,
+                    value = viewModel.staffName,
                     onValueChange = {
-                        viewModel.hospitalName = it
+                        viewModel.staffName = it
                     },
                     modifier = Modifier
                         .border(width = 3.dp, color = Color(0xFFb12856), shape = RoundedCornerShape(16.dp)),
@@ -75,24 +75,25 @@ fun RegisterYourHospital(navController: NavController,viewModel: HospitalInfo) {
                         focusedContainerColor = Color.Transparent,
                         unfocusedContainerColor = Color.Transparent,
                     ),
-                )
+
+                    )
             }
 
             Column (
                 modifier = Modifier.fillMaxSize()
-                    .padding(top = 18.dp),
+                    .padding(top = 20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ){
-                Text("Registration Number",
+                Text("Staff Id",
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif,
                     fontSize = 25.sp
-                    )
+                )
                 OutlinedTextField(
-                    value = viewModel.hospitalRegistrationNumber,
+                    value = viewModel.staffId,
                     onValueChange = {
-                        viewModel.hospitalRegistrationNumber = it
+                        viewModel.staffId = it
                     },
                     modifier = Modifier
                         .border(width = 3.dp, color = Color(0xFFb12856), shape = RoundedCornerShape(16.dp)),
@@ -112,43 +113,15 @@ fun RegisterYourHospital(navController: NavController,viewModel: HospitalInfo) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ){
-                Text("Address",
+                Text("Email",
                     fontWeight = FontWeight.Bold,
                     fontFamily = FontFamily.SansSerif,
                     fontSize = 25.sp
-                    )
-                OutlinedTextField(
-                    value = viewModel.hospitalAddress,
-                    onValueChange = {
-                        viewModel.hospitalAddress = it
-                    },
-                    modifier = Modifier
-                        .border(width = 3.dp, color = Color(0xFFb12856), shape = RoundedCornerShape(16.dp)),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = Color.Transparent,
-                        focusedBorderColor = Color.Transparent,
-                        focusedContainerColor = Color.Transparent,
-                        unfocusedContainerColor = Color.Transparent,
-                    ),
                 )
-            }
-
-            Column (
-                modifier = Modifier.fillMaxSize()
-                    .padding(top = 20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ){
-                Text("Phone Number",
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily.SansSerif,
-                    fontSize = 25.sp
-                    )
                 OutlinedTextField(
-                    value = viewModel.hospitalContactNumber,
+                    value = viewModel.staffEmail,
                     onValueChange = {
-                        viewModel.hospitalContactNumber = it
+                        viewModel.staffEmail = it
                     },
                     modifier = Modifier
                         .border(width = 3.dp, color = Color(0xFFb12856), shape = RoundedCornerShape(16.dp)),
@@ -159,35 +132,6 @@ fun RegisterYourHospital(navController: NavController,viewModel: HospitalInfo) {
                         focusedContainerColor = Color.Transparent,
                         unfocusedContainerColor = Color.Transparent,
                     ),
-                )
-            }
-
-            Column (
-                modifier = Modifier.fillMaxSize()
-                    .padding(top = 20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ){
-                Text("Email Address",
-                    fontWeight = FontWeight.Bold,
-                    fontFamily = FontFamily.SansSerif,
-                    fontSize = 25.sp
-                    )
-                OutlinedTextField(
-                    value = viewModel.hospitalEmail,
-                    onValueChange = {
-                        viewModel.hospitalEmail = it
-                    },
-                    modifier = Modifier
-                        .border(width = 3.dp, color = Color(0xFFb12856), shape = RoundedCornerShape(16.dp)),
-                    shape = RoundedCornerShape(16.dp),
-                    colors = OutlinedTextFieldDefaults.colors(
-                        unfocusedBorderColor = Color.Transparent,
-                        focusedBorderColor = Color.Transparent,
-                        focusedContainerColor = Color.Transparent,
-                        unfocusedContainerColor = Color.Transparent,
-                    ),
-
                 )
             }
 
@@ -203,9 +147,9 @@ fun RegisterYourHospital(navController: NavController,viewModel: HospitalInfo) {
                     fontSize = 25.sp
                 )
                 OutlinedTextField(
-                    value = viewModel.hospitalPassword,
+                    value = viewModel.staffPassword,
                     onValueChange = {
-                        viewModel.hospitalPassword = it
+                        viewModel.staffPassword = it
                     },
                     modifier = Modifier
                         .border(width = 3.dp, color = Color(0xFFb12856), shape = RoundedCornerShape(16.dp)),
@@ -216,25 +160,23 @@ fun RegisterYourHospital(navController: NavController,viewModel: HospitalInfo) {
                         focusedContainerColor = Color.Transparent,
                         unfocusedContainerColor = Color.Transparent,
                     ),
-
-                    )
+                )
             }
 
-            Spacer(modifier = Modifier.padding(1.dp))
+            Spacer(modifier = Modifier.padding(18.dp))
             Row {
                 Button(
                     onClick = {
-                        if (viewModel.selectedCardIndex == 0) {
-                            if (viewModel.hospitalName != ""
-                                && viewModel.hospitalRegistrationNumber != ""
-                                && viewModel.hospitalAddress != ""
-                                && viewModel.hospitalContactNumber != ""
-                                && viewModel.hospitalEmail != ""
-                                && viewModel.hospitalPassword != ""
-                                && viewModel.hospitalWebsite != ""
-                            ) {
+                        if(viewModel.selectedCardIndex == 1){
+                            if(viewModel.staffName!=""
+                                && viewModel.staffId!=""
+                                && viewModel.staffContactNumber!=""
+                                && viewModel.staffEmail!=""
+                                && viewModel.staffPassword!=""
+                                && viewModel.staffDesignation!=""
+                            ){
 
-                            } else {
+                            }else{
                                 showToast = true
                             }
                         }
@@ -257,7 +199,9 @@ fun RegisterYourHospital(navController: NavController,viewModel: HospitalInfo) {
 
                 Button(
                     onClick = {
-                        navController.navigate("signinhospital")
+                        if(viewModel.selectedCardIndex == 1){
+                            navController.navigate("signinstaff")
+                        }
                     },
                     modifier = Modifier
                         .padding(16.dp)
@@ -277,10 +221,10 @@ fun RegisterYourHospital(navController: NavController,viewModel: HospitalInfo) {
                 }
             }
 
-            if (showToast) {
+            if(showToast) {
                 Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
             }
-        }
 
+        }
     }
 }

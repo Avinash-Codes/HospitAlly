@@ -14,8 +14,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
 import com.example.hospitally.navigation.navigate
+import com.example.hospitally.screen.RegisterYourHospital
 import com.example.hospitally.screen.StartDestination
 import com.example.hospitally.ui.theme.HospitAllyTheme
+import com.example.hospitally.viewmodel.HospitalInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -36,7 +38,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             HospitAllyTheme {
                 val navController = rememberNavController()
-                navigate(navController)
+                val viewModel: HospitalInfo = HospitalInfo()
+                navigate(navController, viewModel)
             }
         }
     }
