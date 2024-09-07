@@ -66,4 +66,31 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+
+    //Splash Screen
+    implementation(libs.androidx.core.splashscreen)
+
+    //Lifecycle
+    // ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    // ViewModel utilities for Compose
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // LiveData
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    // Lifecycle utilities for Compose
+    implementation(libs.androidx.lifecycle.runtime.compose)
+
+    //Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    //Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    implementation ("androidx.compose.foundation:foundation:1.7.0")
+
+    //Doted_indicator
+    implementation("com.tbuonomo:dotsindicator:5.0")
+
+
 }
